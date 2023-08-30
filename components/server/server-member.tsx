@@ -30,6 +30,11 @@ export const ServerMember = ({ member, server }: ServerMemberProps) => {
         router.push(`/servers/${params?.serverId}/conversations/${member.id}`);
     };
 
+    const memberName =
+        member.profile.name === "null null"
+            ? member.profile.email
+            : member.profile.name;
+
     return (
         <button
             onClick={onClick}
@@ -50,7 +55,7 @@ export const ServerMember = ({ member, server }: ServerMemberProps) => {
                         "text-primary dark:text-zinc-200 dark:group-hover:text-white"
                 )}
             >
-                {member.profile.name}
+                {memberName}
             </p>
             {icon}
         </button>
