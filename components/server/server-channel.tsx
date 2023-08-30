@@ -37,7 +37,6 @@ export const ServerChannel = ({
 
     const onAction = (e: React.MouseEvent, action: ModalType) => {
         e.stopPropagation();
-        // TODO: open proper modal
         onOpen(action, { channel, server });
     };
 
@@ -63,7 +62,10 @@ export const ServerChannel = ({
             {channel.name !== "general" && role !== MemberRole.GUEST && (
                 <div className="ml-auto flex items-center gap-x-2">
                     <ActionTooltip label="Edit">
-                        <Edit className="hidden group-hover:block w-4 h-4 text-zinc-500 hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300 transition" />
+                        <Edit
+                            className="hidden group-hover:block w-4 h-4 text-zinc-500 hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300 transition"
+                            onClick={(e) => onAction(e, "editChannel")}
+                        />
                     </ActionTooltip>
                     <ActionTooltip label="Delete">
                         <Trash className="hidden group-hover:block w-4 h-4 text-zinc-500 hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300 transition" />
