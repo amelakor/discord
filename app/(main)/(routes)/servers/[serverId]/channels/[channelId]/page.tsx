@@ -49,7 +49,20 @@ const ChannelIdPage = async ({ params }: ChannelIdPageProps) => {
             />
             {channel.type === ChannelType.TEXT && (
                 <>
-                    <ChatMessages />
+                    <ChatMessages
+                        member={member}
+                        name={channel.name}
+                        chatId={channel.id}
+                        apiUrl="/api/messages"
+                        socketUrl="/api/socket/messages"
+                        socketQuery={{
+                            channelId: channel.id,
+                            serverId: channel.serverId,
+                        }}
+                        paramKey="channelId"
+                        paramValue={channel.id}
+                        type="channel"
+                    />
                     <ChatInput
                         name={channel.name}
                         type="channel"
