@@ -6,6 +6,7 @@ import { Member, Message, Profile } from "@prisma/client";
 
 import { ChatWelcome } from "./chat-welcome";
 import { useChatQuery } from "@/hooks/use-chat-query";
+import { useChatSocket } from "@/hooks/use-chat-socket";
 import { ChatItem } from "./chat-item";
 
 interface ChatMessagesProps {
@@ -51,6 +52,12 @@ const ChatMessages = ({
             paramValue,
         });
 
+    useChatSocket({
+        queryKey,
+        addKey,
+        updateKey,
+    });
+
     if (status === "loading") {
         return (
             <div className="flex flex-col flex-1 justify-center items-center">
@@ -72,12 +79,6 @@ const ChatMessages = ({
             </div>
         );
     }
-
-    console.log(
-        data,
-
-        "DATAA"
-    );
 
     return (
         <div
