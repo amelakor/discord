@@ -122,6 +122,11 @@ export const ChatItem = ({
     const isPDF = fileType === "pdf" && fileUrl;
     const isImage = !isPDF && fileUrl;
 
+    const name =
+        member.profile.name === "null null"
+            ? member.profile.email
+            : member.profile.name;
+
     return (
         <div className="relative group flex items-center hover:bg-black/5 p-4 transition w-full">
             <div className="group flex gap-x-2 items-start w-full">
@@ -138,7 +143,7 @@ export const ChatItem = ({
                                 onClick={onMemberClick}
                                 className="font-semibold text-sm hover:underline cursor-pointer"
                             >
-                                {member.profile.name}
+                                {name}
                             </p>
                             <ActionTooltip label={member.role}>
                                 {roleIconMap[member.role]}
